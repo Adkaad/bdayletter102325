@@ -240,7 +240,7 @@ function startMusicOnce() {
 
   const audio = document.getElementById("bg-music");
   if (audio) {
-    audio.currentTime = 0.7;
+    audio.currentTime = 0.2;
     audio.volume = 0.02;
     audio.play().catch((e) => {
       console.log("Autoplay blocked:", e);
