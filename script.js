@@ -28,8 +28,13 @@ document.addEventListener("click", (e) => {
 
 function revealTimedMessages() {
   const messageEl = document.getElementById("message");
+  const lettersEl = document.getElementById("letters"); // new container for letters
   messageEl.style.opacity = "1";
   messageEl.innerHTML = messages[0].replace(/^[^A-Za-z]*([A-Za-z])/, '<span class="first-letter">$1</span>');
+
+  // get first letter of first message
+  const firstLetter = messages[0].trim().charAt(0).toUpperCase();
+  appendLetter(firstLetter);
 
   let i = 1; // start from 2nd message
 
@@ -39,15 +44,25 @@ function revealTimedMessages() {
 
     setTimeout(() => {
       const msg = messages[i];
-      messageEl.innerHTML = msg.replace(/^(\w)/, '<span class="first-letter">$1</span>');
+      const firstChar = msg.trim().charAt(0).toUpperCase();
 
+      // 🌸 Apply first-letter highlight only if NOT the last message
+      if (i !== messages.length - 1) {
+        messageEl.innerHTML = msg.replace(/^(\w)/, '<span class="first-letter">$1</span>');
+      } else {
+        messageEl.innerHTML = msg; // no highlight for final message
+      }
 
-      // 🌷 If it's the last message, make it special
+      // 🌷 Append the first letter below (except for the last message)
+      if (i < messages.length - 1) {
+        appendLetter(firstChar);
+      }
+
+      // 🌟 Last message special glow
       if (i === messages.length - 1) {
-        messageEl.style.transition = "opacity 2.5s ease"; // slower fade-in
+        messageEl.style.transition = "opacity 2.5s ease";
         messageEl.style.opacity = "1";
 
-        // soft glowing finale
         messageEl.style.textShadow = `
           0 0 25px #ffb6c1,
           0 0 50px #ff99cc,
@@ -55,10 +70,7 @@ function revealTimedMessages() {
         `;
 
         setTimeout(() => {
-          // Burst from center
           launchFireworks(window.innerWidth / 2, window.innerHeight / 2);
-
-          // Optional: add a few smaller bursts from random positions
           setTimeout(() => {
             launchFireworks(Math.random() * window.innerWidth, Math.random() * window.innerHeight);
             launchFireworks(Math.random() * window.innerWidth, Math.random() * window.innerHeight);
@@ -66,7 +78,6 @@ function revealTimedMessages() {
           playFinaleFireworks(10000);
         }, 2500);
 
-        // optional: gentle pulsing glow
         messageEl.animate(
           [
             { textShadow: "0 0 25px #ffb6c1, 0 0 50px #ff99cc" },
@@ -80,16 +91,33 @@ function revealTimedMessages() {
           }
         );
 
-        clearInterval(interval); // stop the loop
+        clearInterval(interval);
       } else {
-        messageEl.style.opacity = "1"; // fade in normally
+        messageEl.style.opacity = "1";
       }
 
       i++;
-    }, 800); // wait for fade-out to finish
-  }, 10000); // message display duration
+    }, 800);
+  }, 10000);
 }
 
+// helper to add letter with fade-in animation
+function appendLetter(letter) {
+  const lettersEl = document.getElementById("letters");
+  const span = document.createElement("span");
+
+  // After 5th letter, insert a visual space
+  const totalLetters = lettersEl.querySelectorAll(".revealed-letter").length;
+  if (totalLetters === 5) {
+    const space = document.createElement("span");
+    space.innerHTML = "&nbsp;&nbsp;"; // visual gap between words
+    lettersEl.appendChild(space);
+  }
+
+  span.textContent = letter;
+  span.className = "revealed-letter";
+  lettersEl.appendChild(span);
+}
 
 function createFlower(x, y) {
   const size = 50 + Math.random() * 70;
@@ -184,7 +212,7 @@ function startPetalRainOnce() {
   setInterval(() => {
     const petal = document.createElement("div");
     petal.className = "petal";
-    petal.innerText = "🌹";
+    petal.innerText = "🌸";
 
     const size = 16 + Math.random() * 10;
     petal.style.fontSize = `${size}px`;
@@ -209,7 +237,7 @@ function startMusicOnce() {
 
   const audio = document.getElementById("bg-music");
   if (audio) {
-    audio.currentTime = 10;
+    audio.currentTime = 3;
     audio.volume = 0.03;
     audio.play().catch((e) => {
       console.log("Autoplay blocked:", e);
