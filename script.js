@@ -82,7 +82,7 @@ function revealTimedMessages() {
 
       i++;
     }, 800); // wait for fade-out to finish
-  }, 6000); // message display duration
+  }, 10000); // message display duration
 }
 
 
