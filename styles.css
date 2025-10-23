@@ -1,0 +1,279 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap');
+
+#message {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3rem;
+  text-shadow: 0 0 10px pink;
+  transition: opacity 0.5s;
+}
+
+/* body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(255,182,193,0.1), transparent 80%);
+  pointer-events: none;
+  z-index: 0;
+} */
+
+/* Aurora background animation */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(circle at 20% 30%, rgba(255, 182, 193, 0.15), transparent 60%),
+              radial-gradient(circle at 80% 70%, rgba(147, 112, 219, 0.2), transparent 60%),
+              radial-gradient(circle at 50% 50%, rgba(255, 105, 180, 0.15), transparent 60%),
+              #020024;
+  background-blend-mode: screen;
+  animation: auroraMove 20s ease-in-out infinite alternate;
+  transition: background 1s ease;
+}
+
+@keyframes auroraMove {
+  0% {
+    background-position: 20% 30%, 80% 70%, 50% 50%;
+  }
+  50% {
+    background-position: 25% 35%, 75% 65%, 55% 45%;
+  }
+  100% {
+    background-position: 20% 30%, 80% 70%, 50% 50%;
+  }
+}
+
+/* ✨ Light particle shimmer (tiny twinkling stars) */
+.particle {
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+  opacity: 0;
+  animation: twinkle 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.4);
+  }
+}
+
+body {
+  margin: 0;
+  background-color: #020024;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+#message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2.5rem;
+  color: #fff8f0;
+  font-family: 'Dancing Script', cursive;
+  text-shadow: 0 0 12px rgba(255, 182, 193, 0.9), 0 0 24px rgba(255, 105, 180, 0.6);
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1s ease;
+  z-index: 10;
+  white-space: pre-line; /* keeps line breaks if message has \n */
+}
+
+/* ✨ First letter highlight style */
+.first-letter {
+  font-size: 2em;
+  font-family: 'Dancing Script', cursive; /* or keep your current font if you prefer */
+  color: #ffb6c1; /* soft pink highlight */
+  text-shadow:
+    0 0 10px #ff99cc,
+    0 0 20px #ff69b4,
+    0 0 30px #ffc0cb;
+  margin-right: 2px;
+  display: inline-block;
+  vertical-align: middle;
+  transform: translateY(1px);
+}
+
+
+.button {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  color: #fff0f5;
+  background: linear-gradient(145deg, #ffb6c1, #ff69b4);
+  border: none;
+  padding: 0.7rem 2rem;
+  border-radius: 50px;
+  box-shadow: 0 0 15px rgba(255,182,193, 0.6);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background: linear-gradient(145deg, #ff69b4, #ffb6c1);
+  box-shadow: 0 0 25px rgba(255,182,193, 0.9);
+  transform: scale(1.05);
+}
+
+@keyframes softPulse {
+  0% {
+    box-shadow: 0 0 15px rgba(255,182,193, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(255,182,193, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(255,182,193, 0.5);
+  }
+}
+
+.button {
+  animation: softPulse 3s infinite;
+}
+
+.flower {
+  position: absolute;
+  pointer-events: none;
+  animation: fadeOut 5s ease-out forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    transform: scale(0.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.petal {
+  position: fixed;
+  top: -50px;
+  font-size: 20px;
+  opacity: 0.8;
+  animation: fall linear forwards;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+#intro {
+  position: fixed;
+  inset: 0;
+  background: #0b001a;
+  color: #ffe4e1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  text-align: center;
+  padding: 1rem;
+}
+.intro-text {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-family: 'Dancing Script', cursive;
+}
+
+.shooting-star {
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  background: rgb(255, 255, 255, 0.6);
+  box-shadow: 0 0 8px 4px rgb(255, 255, 255, 0.6);
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+  transform: rotate(var(--angle, 45deg));
+  animation: shoot 1s ease-out forwards;
+}
+
+@keyframes shoot {
+  0% {
+    transform: translate(var(--start-x, -50vw), var(--start-y, -50vh)) rotate(var(--angle, 45deg));
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--end-x, 150vw), var(--end-y, 150vh)) rotate(var(--angle, 45deg));
+    opacity: 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .intro-text {
+    font-size: 3rem;
+  }
+  #message {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .intro-text {
+    font-size: 2.5rem;
+  }
+
+  #intro button {
+    font-size: 1.5rem;
+    padding: 0.5rem 1.2rem;
+  }
+  #message {
+    font-size: 2.5rem;
+    padding: 0 1rem;
+  }
+}
+
+/* 🌟 Fireworks animation */
+.firework {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.9;
+  box-shadow: 0 0 10px 4px rgba(255, 200, 255, 0.8);
+  animation: explode 2.2s ease-out forwards;
+}
+
+@keyframes explode {
+  0% {
+    transform: scale(0.6);
+    opacity: 1;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--dx), var(--dy)) scale(1.2);
+    opacity: 0;
+    filter: blur(2px);
+  }
+}
+
