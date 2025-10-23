@@ -5,10 +5,15 @@ function startExperience() {
   startPetalRainOnce();
 }
 
-const messages = ["My dearest aunt, a blessing so rare, Whose love and kindness show how deeply you care.", "A guiding light through joy and pain, You’ve stood beside me, through sunshine and rain.",
-  "Radiant heart, so gentle, so pure, A love like yours will forever endure.", "A second mother, chosen by fate, Your love’s a gift words can’t translate.",
-  "Rejoice today, your special day, For all the love you’ve given away.", "On this birthday, may blessings flow, And all your dreams continue to grow.",
-  "Surrounded by laughter, peace, and grace, Your heart’s a haven, a sacred place.", "A mother in spirit, my heart will always know, Auntie, you’re loved more than words can show.", "Happy Birthday, Auntie ❤️"];
+const messages = ["My dearest aunt, a blessing so rare, Whose love and kindness show how deeply you care.",
+  "A guiding light through joy and pain, You’ve stood beside me, through sunshine and rain.",
+  "Radiant heart, so gentle, so pure, A love like yours will forever endure.",
+  "In your embrace, I've found my home, A place of warmth where I’m never alone.",
+  "A second mother, chosen by fate, Your love’s a gift words can’t translate.",
+  "Rejoice today, your special day, For all the love you’ve given away.",
+  "On this birthday, may blessings flow, And all your dreams continue to grow.",
+  "Surrounded by laughter, peace, and grace, Your heart’s a haven, a sacred place.",
+  "A mother in spirit, my heart will always know, Auntie, you’re loved more than words can show.", "Happy Birthday, Auntie ❤️"];
 let msgIndex = 0;
 let messageShown = false;
 let petalsStarted = false;
@@ -204,7 +209,8 @@ function startMusicOnce() {
 
   const audio = document.getElementById("bg-music");
   if (audio) {
-    audio.volume = 0.05;
+    audio.currentTime = 10;
+    audio.volume = 0.03;
     audio.play().catch((e) => {
       console.log("Autoplay blocked:", e);
     });
