@@ -191,7 +191,7 @@ function startPetalRainOnce() {
   setInterval(() => {
     const petal = document.createElement("div");
     petal.className = "petal";
-    petal.innerText = "🌹";
+    petal.innerText = "🌸";
 
     const size = 16 + Math.random() * 10;
     petal.style.fontSize = `${size}px`;
