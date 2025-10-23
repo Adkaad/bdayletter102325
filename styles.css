@@ -279,7 +279,7 @@ body {
 
 #letters {
   position: fixed;
-  bottom: 50px;
+  bottom: 170px;
   left: 50%;
   transform: translateX(-50%);
   font-family: 'Dancing Script', cursive;
