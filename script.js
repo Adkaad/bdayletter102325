@@ -204,7 +204,7 @@ function startMusicOnce() {
 
   const audio = document.getElementById("bg-music");
   if (audio) {
-    audio.volume = 0.1;
+    audio.volume = 0.05;
     audio.play().catch((e) => {
       console.log("Autoplay blocked:", e);
     });
