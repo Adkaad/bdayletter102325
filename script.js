@@ -28,41 +28,43 @@ document.addEventListener("click", (e) => {
 
 function revealTimedMessages() {
   const messageEl = document.getElementById("message");
-  const lettersEl = document.getElementById("letters"); // new container for letters
+  const lettersEl = document.getElementById("letters"); // <div id="letters"></div> in HTML
   messageEl.style.opacity = "1";
   messageEl.innerHTML = messages[0].replace(/^[^A-Za-z]*([A-Za-z])/, '<span class="first-letter">$1</span>');
+  appendLetter(messages[0][0].toUpperCase());
 
-  // get first letter of first message
-  const firstLetter = messages[0].trim().charAt(0).toUpperCase();
-  appendLetter(firstLetter);
-
-  let i = 1; // start from 2nd message
+  let i = 1;
 
   const interval = setInterval(() => {
     messageEl.style.transition = "opacity 1s ease";
-    messageEl.style.opacity = "0"; // fade out
+    messageEl.style.opacity = "0";
 
     setTimeout(() => {
       const msg = messages[i];
-      const firstChar = msg.trim().charAt(0).toUpperCase();
 
-      // 🌸 Apply first-letter highlight only if NOT the last message
+      // ✨ Highlight first letter only if not last
       if (i !== messages.length - 1) {
         messageEl.innerHTML = msg.replace(/^(\w)/, '<span class="first-letter">$1</span>');
       } else {
-        messageEl.innerHTML = msg; // no highlight for final message
+        messageEl.innerHTML = msg; // no highlight
       }
 
-      // 🌷 Append the first letter below (except for the last message)
-      if (i < messages.length - 1) {
-        appendLetter(firstChar);
+      // 🌸 Append letter only if not the last message
+      if (i !== messages.length - 1) {
+        const firstLetter = msg.match(/^[A-Za-z]/);
+        if (firstLetter) appendLetter(firstLetter[0].toUpperCase());
       }
 
-      // 🌟 Last message special glow
+      // 🎉 Final message logic
       if (i === messages.length - 1) {
+        // 💨 Fade out or remove MARIA ROSA
+        lettersEl.style.transition = "opacity 2s ease";
+        lettersEl.style.opacity = "0";
+        setTimeout(() => (lettersEl.innerHTML = ""), 2000);
+
+        // Finale glow + fireworks
         messageEl.style.transition = "opacity 2.5s ease";
         messageEl.style.opacity = "1";
-
         messageEl.style.textShadow = `
           0 0 25px #ffb6c1,
           0 0 50px #ff99cc,
@@ -100,6 +102,7 @@ function revealTimedMessages() {
     }, 800);
   }, 10000);
 }
+
 
 // helper to add letter with fade-in animation
 function appendLetter(letter) {
@@ -237,8 +240,8 @@ function startMusicOnce() {
 
   const audio = document.getElementById("bg-music");
   if (audio) {
-    audio.currentTime = 3;
-    audio.volume = 0.03;
+    audio.currentTime = 0.7;
+    audio.volume = 0.02;
     audio.play().catch((e) => {
       console.log("Autoplay blocked:", e);
     });

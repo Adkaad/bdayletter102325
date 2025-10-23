@@ -96,7 +96,7 @@ body {
 .first-letter {
   font-size: 2em;
   font-family: 'Dancing Script', cursive; /* or keep your current font if you prefer */
-  color: #ffb6c1; /* soft pink highlight */
+  color: #fff8f0; /* soft pink highlight */
   text-shadow:
     0 0 10px #ff99cc,
     0 0 20px #ff69b4,
@@ -279,7 +279,7 @@ body {
 
 #letters {
   position: fixed;
-  bottom: 170px;
+  top: 170px;
   left: 50%;
   transform: translateX(-50%);
   font-family: 'Dancing Script', cursive;
