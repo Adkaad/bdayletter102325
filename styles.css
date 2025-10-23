@@ -234,7 +234,7 @@ body {
 
 @media (max-width: 480px) {
   .intro-text {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
 
   #intro button {
@@ -242,7 +242,7 @@ body {
     padding: 0.5rem 1.2rem;
   }
   #message {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     padding: 0 1rem;
   }
 }
